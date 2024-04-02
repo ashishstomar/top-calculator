@@ -4,17 +4,17 @@ body {
     margin: 0px;
     padding: 0px;
     background-color: #414141;
-    outline: 1px solid red;
     color: white;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     height: 100vh;
+    font-family: "Orbitron", sans-serif;
 }
 
 .container {
-    border: 2px solid rgb(185, 181, 181);
+    border: 4px solid rgb(255, 255, 255);
     height: 500px;
     width: 300px;
     display: flex;
@@ -34,22 +34,23 @@ body {
     background-color: rgb(153, 153, 153);
     border-radius: 5px;
     color: black;
+    display: flex;
+    flex-direction: column;
 }
 
 .displayTxt{
     font-size: 30px;
     font-weight:500;
-    padding: 10px;;
-    font-family: "Orbitron", sans-serif;
-    font-size: 2.5vw;
-  
+    padding: 0px 0px 0px 5px;
+    overflow-wrap: break-word;  
+    word-wrap: break-word; 
+    word-break: break-word;
+    display: flex;
 }
 .content {
     display: flex;
     flex-direction: column;
     gap: 23px;
-
-
 }
 
 .row {
@@ -61,7 +62,7 @@ body {
 }
 
 button, #equal {
-    background-color: rgb(198, 255, 255);
+    background-color: rgb(253, 239, 189);
     border-radius: 100px;
     border: 1px soliid;
     font-size: 27px;
