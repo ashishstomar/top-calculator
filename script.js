@@ -1,4 +1,11 @@
-const displayTxt = document.querySelector('.displayTxt')
+let displayTxt = document.querySelector('.displayTxt')
+let allClearBtn = document.querySelector("#allClear");
+let deleteBtn = document.querySelector('#delete');
+let numButtons = document.querySelectorAll('.num');
+let operatorButtons = document.querySelectorAll(".operator");
+let decimalBtn = document.querySelector('#decimal');
+let equalBtn = document.querySelector('#equal');
+
 displayTxt.textContent = '0'
 
 function add(x,y) {
@@ -32,6 +39,7 @@ function factorial(num){
 }    
 
 function operate(num1, operator, num2) {
+
     switch (operator) {
         case '+' :
             add(num1,num2);
@@ -39,21 +47,38 @@ function operate(num1, operator, num2) {
         case '-' :
             subtract(num1,num2);
             break;
-        case '*' :
+        case 'x' :
             multiply(num1,num2);
             break;
         case '/' :
             divide(num1,num2);
             break;
-        case '!':
+        case 'X!':
             factorial(num1);
             break;            
     }
 }
 
+function allClear(){
+    allClearBtn.addEventListener('click', () => {
+    inputNum = [];
+    displayTxt.textContent = '0'
+})
+}
+
+
+function deleteNum() {
+    deleteBtn.addEventListener('click', () => {
+        inputNum.pop()
+        displayTxt.textContent = inputNum.join('');
+    if(inputNum.length === 0 ) {
+        displayTxt.textContent = '0'
+    }
+})
+}
+
 
 let inputNum = [];
-let numButtons = document.querySelectorAll('.num');
 numButtons.forEach((numButton) => {
     numButton.addEventListener('click', () => {
         inputNum.push(numButton.textContent);
@@ -62,31 +87,33 @@ numButtons.forEach((numButton) => {
 })
 
 
-let operatorButtons = document.querySelectorAll(".operator");
+let inputNum2 = [];
+let operatorButtonValue = '';
+
+//upon clicking any operator perform operation
 operatorButtons.forEach((operatorButton) => {
     operatorButton.addEventListener('click', () => {
-       let operatorButtonValue = operatorButton.textContent
-       if(operatorButtonValue === 'x'){
-       console.log(operatorButtonValue);
-        operate(inputNum.join(''),'x', 1)
-       }
-    })
+        inputNum2 = inputNum;
+        inputNum = [];
+        // console.log('inputNum2: '+parseInt(inputNum2.join('')));
+        // console.log('inputNum: '+inputNum.join(''));
+       operatorButtonValue = operatorButton.textContent;
+       console.log('Operator: '+operatorButtonValue);
+       })
 })
 
-let allClearBtn = document.querySelector("#allClear");
-allClearBtn.addEventListener('click', () => {
+decimalBtn.addEventListener('click', () => {
+    console.log(decimalBtn);
+    inputNum.push('.');
+}) 
+
+
+
+
+equalBtn.addEventListener('click', () => {
+    operate(parseInt(inputNum2.join('')),operatorButtonValue, parseInt(inputNum.join('')));
     inputNum = [];
-    displayTxt.textContent = '0'
 })
 
-
-let deleteBtn = document.querySelector('#delete');
-deleteBtn.addEventListener('click', () => {
-    inputNum.pop()
-    displayTxt.textContent = inputNum.join('');
-    
-    if(inputNum.length === 0 ) {
-        displayTxt.textContent = '0'
-    }
-})
-
+allClear();
+deleteNum();
