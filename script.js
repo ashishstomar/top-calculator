@@ -107,9 +107,6 @@ decimalBtn.addEventListener('click', () => {
     inputNum.push('.');
 }) 
 
-
-
-
 equalBtn.addEventListener('click', () => {
     operate(parseInt(inputNum2.join('')),operatorButtonValue, parseInt(inputNum.join('')));
     inputNum = [];
