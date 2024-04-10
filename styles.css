@@ -55,7 +55,7 @@ body {
 .previousOperand {
     height: 20px;
     width: 280px;
-    font-size: 25px;
+    font-size: 22px;
     display: flex;
     justify-content: flex-end;
 }
@@ -63,7 +63,7 @@ body {
 .currentOperand {
     height: 40px;
     width: 280px;
-    font-size: 35px;
+    font-size: 30px;
     display: flex;
     justify-content: flex-end;
 }
