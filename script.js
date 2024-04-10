@@ -131,11 +131,15 @@ equalBtn.addEventListener('click', () => {
 })
 
 decimalBtn.addEventListener('click', () => {
-    inputNum1 += decimalBtn.textContent;
-    currentOperand.textContent = inputNum1;
+    if( currentOperand.textContent.includes('.')) {
+    return;
+    }
+    else {
+        inputNum1 += '.';
+        currentOperand.textContent = inputNum1;
+    }
+})
 
-
-}) 
 
 posNegBtn.addEventListener('click', () => {
     if(inputNum1 === 0) {
