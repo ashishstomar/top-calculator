@@ -52,6 +52,7 @@ function operate(num1, operator, num2) {
 function allClear(){
     allClearBtn.addEventListener('click', () => {
     inputNum1 = '';
+    inputNum2 = '';
     previousOperand.textContent = '';
     currentOperand.textContent = '0';
     })
@@ -78,16 +79,13 @@ let operatorButtonValue = '';
 let result = '';
 
 const numpad = function() {
-    if(currentOperand.textContent != '0') {
-        currentOperand.textContent = ''
-    }
     numButtons.forEach((numButton) => {
         numButton.addEventListener('click', () => {
             if(currentOperand.textContent === '0') {
                 currentOperand.textContent = '';
             }
             inputNum1 += numButton.textContent;
-            currentOperand.textContent += numButton.textContent ;
+            currentOperand.textContent = inputNum1 ;
             console.log('inputNum1 ' + inputNum1);
         })
     })
