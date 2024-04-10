@@ -2,17 +2,19 @@
 
 JavaScript Final Foundation Course Project:  Calculator
 
-This repository houses the final project for a foundational JavaScript course, focusing on building a basic calculator using HTML, CSS, and JavaScript. The calculator is designed to perform basic arithmetic operations such as addition, subtraction, multiplication, and division.
+This repository houses the final project for a foundational JavaScript course, focusing on building a fully functional calculator using HTML, CSS, and JavaScript. The calculator is designed to perform basic arithmetic operations such as addition, subtraction, multiplication, and division.
 
 Features:
-User-friendly interface with responsive design using HTML and CSS.
+User-friendly minimalist and colourful interface with responsive design using HTML and CSS.
 Implementation of core arithmetic operations using JavaScript.
-Support for addition, subtraction, multiplication, and division.
+Support for addition, subtraction, multiplication, division and factorial.
 Clear button for resetting the calculator.
 Error handling for invalid inputs.
+
 Getting Started:
 Clone this repository to your local machine.
-Open index.html in your preferred web browser.\
+Open index.html in your preferred web browser.
+Or check the deployed site, link is in the project description.
 
 Start calculating!
 
