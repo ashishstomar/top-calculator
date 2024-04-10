@@ -8,23 +8,23 @@ let decimalBtn = document.querySelector('#decimal');
 let posNegBtn = document.querySelector('#posNeg');
 let equalBtn = document.querySelector('#equal');
 
-function add(x,y) {
+const add = function(x,y) {
     return x + y;
 }
 
-function subtract(x,y) {
+const subtract = function(x,y) {
     return x - y;
 }
 
-function multiply(x,y) {
+const multiply = function(x,y) {
     return x * y;
 }
 
-function divide(x,y){
+const divide = function(x,y) {
     return x / y;
 }
 
-function factorial(num){
+const factorial = function(num) {
     if (num === 0) return 1;
     fact = 1;
     for(let i = num; i >= 1; i--) {
@@ -33,7 +33,7 @@ function factorial(num){
     return fact;
 }    
 
-function operate(num1, operator, num2) {
+const operate = function(num1, operator, num2) {
 
     switch (operator) {
         case '+' :
@@ -49,7 +49,7 @@ function operate(num1, operator, num2) {
     }
 }
 
-function allClear(){
+const allClear = function() {
     allClearBtn.addEventListener('click', () => {
     inputNum1 = '';
     inputNum2 = '';
@@ -59,7 +59,7 @@ function allClear(){
 }
 
 
-function deleteNum() {
+const deleteNum = function() {
     deleteBtn.addEventListener('click', () => {
         inputNum1 = inputNum1.slice(0, -1); 
         currentOperand.textContent = inputNum1;
@@ -142,10 +142,11 @@ decimalBtn.addEventListener('click', () => {
 
 
 posNegBtn.addEventListener('click', () => {
-    if(inputNum1 === 0) {
-        inputNum1 += +'-';
-        currentOperand.textContent = inputNum1;
+    if(currentOperand.textContent === '0') {
+        inputNum1 = "-";
     }
+    inputNum1 *= -1;
+    currentOperand.textContent = inputNum1;
 })
 
 allClear();
