@@ -21,7 +21,7 @@ const multiply = function(x,y) {
 }
 
 const divide = function(x,y) {
-    return x / y;
+    return x == '1' && y == '0' ? "LMAODED" :  x / y;
 }
 
 const factorial = function(num) {
@@ -73,26 +73,23 @@ previousOperand.textContent = '';
 currentOperand.textContent = '0';
 
 
-let inputNum1 = '';
+let inputNum1 = '0';
 let inputNum2 = '';
 let operatorButtonValue = '';
 let result = '';
 
-const numpad = function() {
+const numPad = function() {
     numButtons.forEach((numButton) => {
         numButton.addEventListener('click', () => {
             if(currentOperand.textContent === '0') {
                 currentOperand.textContent = '';
+                inputNum1 = '';
             }
             inputNum1 += numButton.textContent;
             currentOperand.textContent = inputNum1 ;
-            console.log('inputNum1 ' + inputNum1);
         })
     })
 }
-
-
-//const newArray = numArray.reduce((firstOne, nextOne) => firstOne + nextOne, 0)
 
 //upon clicking any operator perform operation
 operatorButtons.forEach((operatorButton) => {
@@ -101,13 +98,13 @@ operatorButtons.forEach((operatorButton) => {
             inputNum2 = inputNum1;
             inputNum1 = '';
            operatorButtonValue = operatorButton.textContent;
-           previousOperand.textContent = inputNum2 + operatorButtonValue;
+           previousOperand.textContent = ` ${inputNum2} ${operatorButtonValue}`;
            currentOperand.textContent = '0';
         }
         else {
             result = operate(Number(inputNum2), operatorButtonValue, Number(inputNum1));
             operatorButtonValue = operatorButton.textContent;
-            previousOperand.textContent = result + operatorButtonValue;
+            previousOperand.textContent = `${result} ${operatorButtonValue}`;
             currentOperand.textContent = '0';
             inputNum1 = '';
             inputNum2 = result;
@@ -123,7 +120,7 @@ equalBtn.addEventListener('click', () => {
         inputNum2 = result;
     }
     catch(error){
-        currentOperand.textContent= 'ERROR'
+        currentOperand.textContent = 'ERROR'
     }
     previousOperand.textContent = '' 
     inputNum1 = '';
@@ -143,12 +140,15 @@ decimalBtn.addEventListener('click', () => {
 
 posNegBtn.addEventListener('click', () => {
     if(currentOperand.textContent === '0') {
-        inputNum1 = "-";
+        return;
     }
-    inputNum1 *= -1;
-    currentOperand.textContent = inputNum1;
+    else {
+        inputNum1 *= -1;
+        currentOperand.textContent = inputNum1;
+    }
+    console.log(inputNum1);
 })
 
 allClear();
 deleteNum();
-numpad()
+numPad()
