@@ -8,6 +8,37 @@ let factBtn = document.querySelector("#fact");
 let decimalBtn = document.querySelector('#decimal');
 let posNegBtn = document.querySelector('#posNeg');
 let equalBtn = document.querySelector('#equal');
+const body = document.querySelector('body')
+
+
+const lightIcon = document.querySelector("#light-icon");
+const darkIcon = document.querySelector("#dark-icon");
+
+// Set dark-mode class on body if darkMode is true and pick icon
+if (darkTheme) {
+  document.body.classList.add("dark-mode");
+  darkIcon.setAttribute("display", "none");
+} else {
+  lightIcon.setAttribute("display", "none");
+}
+
+// Toggle dark mode on button click
+function darkModeToggle() {
+    darkTheme = !darkTheme;
+    document.body.classList.toggle("dark-mode");
+    
+    // Toggle light and dark icons
+    if (darkTheme) {
+        body.style.background = 'linear-gradient(135deg, #ffd3a5, #fd6585)';
+        lightIcon.setAttribute("display", "block");
+        darkIcon.setAttribute("display", "none");
+      
+    } else {
+        body.style.background = 'linear-gradient(135deg, #6c6c6c, #1f1f1f)';
+        lightIcon.setAttribute("display", "none");
+        darkIcon.setAttribute("display", "block");
+    }
+  }
 
 const add = function(x,y) {
     return x + y;
