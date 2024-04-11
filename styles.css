@@ -7,7 +7,7 @@ body {
     color: white;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content:space-evenly;
     align-items: center;
     height: 100vh;
     font-family: Ariel, sans-serif;
@@ -155,3 +155,15 @@ button:active {
 #divide:active, #multiply:active, #minus:active, #add:active, #fact:active {
     background-color: rgb(48, 1, 123);
 }
+
+#darkTheme {
+    all: unset;
+    cursor: pointer;
+    height: 50px;
+    width: 50px;
+    border: 2px solid rgb(231, 230, 230);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 12px;
+  }
