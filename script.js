@@ -40,6 +40,7 @@ function darkModeToggle() {
     }
   }
 
+
 const add = function(x,y) {
     return x + y;
 }
@@ -63,6 +64,7 @@ const factorial = function(num) {
         for(let i = num; i >= 1; i--) {
           fact = fact * i;
         }
+        inputNum1 = fact;
         return fact;
     }
     catch(error){
