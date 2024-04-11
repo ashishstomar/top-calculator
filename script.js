@@ -4,6 +4,7 @@ let allClearBtn = document.querySelector("#allClear");
 let deleteBtn = document.querySelector('#delete');
 let numButtons = document.querySelectorAll('.num');
 let operatorButtons = document.querySelectorAll(".operator");
+let factBtn = document.querySelector("#fact");
 let decimalBtn = document.querySelector('#decimal');
 let posNegBtn = document.querySelector('#posNeg');
 let equalBtn = document.querySelector('#equal');
@@ -25,12 +26,17 @@ const divide = function(x,y) {
 }
 
 const factorial = function(num) {
-    if (num === 0) return 1;
-    fact = 1;
-    for(let i = num; i >= 1; i--) {
-      fact = fact * i;
+    try {
+        if (num === 0) return 1;
+        fact = 1;
+        for(let i = num; i >= 1; i--) {
+          fact = fact * i;
+        }
+        return fact;
     }
-    return fact;
+    catch(error){
+        currentOperand.textContent = 'ERROR'
+    }
 }    
 
 const operate = function(num1, operator, num2) {
@@ -43,11 +49,16 @@ const operate = function(num1, operator, num2) {
         case 'x' :
            return multiply(num1,num2);
         case '/' :
-            return divide(num1,num2);
-        case '!':
-            return factorial(num1);           
+            return divide(num1,num2);  
+        default:
+            currentOperand.textContent = 'ERROR';   
     }
 }
+
+
+factBtn.addEventListener('click', () => {
+    currentOperand.textContent = factorial(inputNum1);
+})
 
 const allClear = function() {
     allClearBtn.addEventListener('click', () => {
@@ -143,7 +154,7 @@ posNegBtn.addEventListener('click', () => {
         return;
     }
     else {
-        inputNum1 *= -1;
+        inputNum1 *= '-1';
         currentOperand.textContent = inputNum1;
     }
     console.log(inputNum1);
