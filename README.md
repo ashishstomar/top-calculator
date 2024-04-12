@@ -1,4 +1,4 @@
-# top-calculator
+# TOP-CALCULATOR
 
 JavaScript Final Foundation Course Project:  Calculator
 
@@ -10,6 +10,8 @@ Implementation of core arithmetic operations using JavaScript.
 Support for addition, subtraction, multiplication, division and factorial.
 Clear button for resetting the calculator.
 Error handling for invalid inputs.
+
+![image](https://github.com/ashishstomar/top-calculator/assets/23213257/4d579ddf-4eae-422c-8828-49701a251c52)
 
 Getting Started:
 Clone this repository to your local machine.
