@@ -11,6 +11,9 @@ Support for addition, subtraction, multiplication, division and factorial.
 Clear button for resetting the calculator.
 Error handling for invalid inputs.
 
+![UI](image-1.png)
+
+
 Getting Started:
 Clone this repository to your local machine.
 Open index.html in your preferred web browser.
