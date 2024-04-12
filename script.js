@@ -59,7 +59,16 @@ const divide = function(x,y) {
 
 const factorial = function(num) {
     try {
-        if (num === 0) return 1;
+        if (num === 0){
+            return 1;
+        }
+        else if (num === '') {
+            return 0;
+        }
+        else if (num > 170) {
+            inputNum1 = '';
+            return "BAJILLION";
+        } 
         fact = 1;
         for(let i = num; i >= 1; i--) {
           fact = fact * i;
@@ -84,7 +93,7 @@ const operate = function(num1, operator, num2) {
         case '/' :
             return divide(num1,num2);  
         default:
-            currentOperand.textContent = 'ERROR';   
+            return currentOperand.textContent = 'ERROR';   
     }
 }
 
@@ -94,23 +103,37 @@ factBtn.addEventListener('click', () => {
 })
 
 const allClear = function() {
-    allClearBtn.addEventListener('click', () => {
     inputNum1 = '';
     inputNum2 = '';
     previousOperand.textContent = '';
     currentOperand.textContent = '0';
-    })
 }
 
 
 const deleteNum = function() {
-    deleteBtn.addEventListener('click', () => {
-        inputNum1 = inputNum1.slice(0, -1); 
+    inputNum1 = inputNum1.slice(0, -1); 
         currentOperand.textContent = inputNum1;
     if(inputNum1.length === 0 ) {
         currentOperand.textContent = '0'
     }
-    })
+}
+
+const numPad = function(numButton) {
+
+    if (inputNum1.length > 10) {
+        return;
+    }
+    if(currentOperand.textContent === '0') {
+        currentOperand.textContent = '';
+        inputNum1 = '';
+    }
+    if(inputSource === 'click') {
+        inputNum1 += numButton.textContent;
+    }
+    else {
+        inputNum1 += numButton;
+    }
+    currentOperand.textContent = inputNum1;
 }
 
 previousOperand.textContent = '';
@@ -121,19 +144,42 @@ let inputNum1 = '0';
 let inputNum2 = '';
 let operatorButtonValue = '';
 let result = '';
+let inputSource = '';
 
-const numPad = function() {
-    numButtons.forEach((numButton) => {
-        numButton.addEventListener('click', () => {
-            if(currentOperand.textContent === '0') {
-                currentOperand.textContent = '';
-                inputNum1 = '';
-            }
-            inputNum1 += numButton.textContent;
-            currentOperand.textContent = inputNum1 ;
-        })
-    })
-}
+deleteBtn.addEventListener('click', () => deleteNum());
+allClearBtn.addEventListener('click', () => allClear());
+
+numButtons.forEach((numButton) => {
+    numButton.addEventListener('click', () => {
+        inputSource = 'click';
+        numPad(numButton)
+    });    
+})    
+
+
+
+//keyboard Input
+document.addEventListener('keydown', (e) => {
+    key = e.key;
+  if (key === 'Backspace') {
+        deleteNum();
+        console.log('Backspace works');
+    }
+    else if (key === 'Delete') {
+        allClear();
+        console.log("Delete works");
+    } 
+    else if (key <= 9 ) {
+        inputSource = 'keydown';
+        numPad(key);
+    }        
+}) 
+
+
+
+
+///////////////////////////////////////////
+
 
 //upon clicking any operator perform operation
 operatorButtons.forEach((operatorButton) => {
@@ -145,13 +191,19 @@ operatorButtons.forEach((operatorButton) => {
            previousOperand.textContent = ` ${inputNum2} ${operatorButtonValue}`;
            currentOperand.textContent = '0';
         }
-        else {
-            result = operate(Number(inputNum2), operatorButtonValue, Number(inputNum1));
-            operatorButtonValue = operatorButton.textContent;
-            previousOperand.textContent = `${result} ${operatorButtonValue}`;
-            currentOperand.textContent = '0';
-            inputNum1 = '';
-            inputNum2 = result;
+        else{
+            if(inputNum1 === '') {
+                operatorButtonValue = operatorButton.textContent;
+                previousOperand.textContent = `${inputNum2} ${operatorButtonValue}`;
+            }
+            else {
+                result = operate(Number(inputNum2), operatorButtonValue, Number(inputNum1));
+                operatorButtonValue = operatorButton.textContent;
+                previousOperand.textContent = `${result} ${operatorButtonValue}`;
+                currentOperand.textContent = '0';
+                inputNum1 = '';
+                inputNum2 = result;
+            }
         }
     })
 })
@@ -159,9 +211,9 @@ operatorButtons.forEach((operatorButton) => {
 equalBtn.addEventListener('click', () => {
     try {
         result = operate(Number(inputNum2), operatorButtonValue, Number(inputNum1));
-        currentOperand.textContent = result;
         inputNum1 = '';
         inputNum2 = result;
+        currentOperand.textContent = inputNum2;
     }
     catch(error){
         currentOperand.textContent = 'ERROR'
@@ -194,5 +246,3 @@ posNegBtn.addEventListener('click', () => {
 })
 
 allClear();
-deleteNum();
-numPad()
